@@ -25,6 +25,15 @@ noteapp.all('/api/list', function (req, res, next) {
   api.list(req, res);
 });
 
+noteapp.all('/api/del', function (req, res, next) {
+  console.log('Del API is called...');
+  api = new rest_api();
+  api.del(req)
+  if (result) {
+  	res.json({success: true})
+  }
+});
+
 noteapp.listen(3000, function () {
   console.log('Example noteapp listening on port 3000!');
 });

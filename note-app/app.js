@@ -25,6 +25,15 @@ app.all('/api/list', function (req, res, next) {
   api.list(req, res);
 });
 
+app.all('/api/del', function (req, res, next) {
+  console.log('Del API is called...');
+  api = new rest_api();
+  if(api.del(req))
+  {
+  	res.json({success: true})
+  }
+});
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });

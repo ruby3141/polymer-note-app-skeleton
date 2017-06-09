@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose()
-var db = new sqlite3.Database(':memory:')
+var db = new sqlite3.Database('data.db')
 
 class rest_api {
   constructor() {
@@ -41,6 +41,14 @@ class rest_api {
         }
       })
     })
+  }
+  del(req) {
+    db.serialize(function () {
+	  var stmt = db.prepare('DELETE FROM note WHERE id=?')
+	  stmt.run(req.body.content)
+	  stmt.finalize()
+	})
+	return true
   }
 }
 module.exports = rest_api;
